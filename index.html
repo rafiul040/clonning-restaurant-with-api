@@ -18,11 +18,13 @@
       rel="stylesheet"
     />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
+
+
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <link
@@ -51,33 +53,35 @@
   </head>
   <body class="bg-art">
     <header
-      class="flex flex-col gap-5 justify-center items-center min-h-screen"
+    class="flex flex-col gap-5 justify-center items-center min-h-screen"
     >
-      <div class="">
-        <img src="./assets/logo.png" alt="" class="w-[450px]" />
-      </div>
+    <div class="">
+      <img src="./assets/logo.png" alt="" class="w-[450px] animate-bounce" />
+    </div>
+    
+    <div
+    class="w-20 h-20 flex items-center justify-center animate-bounce bg-[#FEBF00] mt-10 rounded-full shadow-xl justify-self-end"
+    >
+    <i class="fa-solid fa-arrow-down text-xl"></i>
+  </div>
+  <h1
+  class="w-full sticky bottom-0 text-center text-xl font-bold p-4 bg-[#FEBF00] rounded"
+  >
+  Digital Menu Card For Our Lovely Customer
+</h1>
+</header>
 
-      <div
-        class="w-20 h-20 flex items-center justify-center animate-bounce bg-[#FEBF00] mt-10 rounded-full shadow-xl justify-self-end"
-      >
-        <i class="fa-solid fa-arrow-down text-xl"></i>
-      </div>
-      <h1
-        class="w-full sticky bottom-0 text-center text-xl font-bold p-4 bg-[#FEBF00] rounded"
-      >
-        Digital Menu Card For Our Lovely Customer
-      </h1>
-    </header>
-
-    <main
+<div class="grid grid-cols-12 gap-5 mt-10 w-11/12 mx-auto min-h-screen py-4">
+    <!-- <main
       class="grid grid-cols-12 gap-5 mt-10 w-11/12 mx-auto min-h-screen py-4"
-    >
+    > -->
       <section class="bg-[#FEBF00] col-span-2 rounded-xl p-3">
         <h1 class="text-xl font-bold text-center bg-white rounded-2xl">
           Cateogries
         </h1>
         <div class="divider"></div>
         <!-- categories  -->
+
         <div class="grid grid-cols-1 gap-3" id="category-container">
           <button class="btn btn-block shadow btn-category">
             <img
@@ -177,6 +181,10 @@
           <h2 class="p-3 text-white font-bold">Total $<span>560</span>BDT</h2>
         </div>
       </section>
-    </main>
+    <!-- </main> -->
+  </div>
+
+
+    <script src="script.js"></script>
   </body>
 </html>
