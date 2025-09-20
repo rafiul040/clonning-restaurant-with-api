@@ -159,15 +159,11 @@ const displayFoods = ( foods ) => {
 
 const displayDetails = ( food ) => {
   const detailsContainer = document.getElementById( 'details-container' );
+  detailsContainer.innerHTML= "";
+  const ecode = food.video.split("=")[1];
+
   detailsContainer.innerHTML = `
-        <div>
-        <h2 class="text-3xl font-bold">${food.title}</h2>
-        
-      </div>
-        <div class="badge badge-primary">
-        ${food.area}
-      </div>
-      <a href="${food.video}" target="_blank" class="btn-warning">Watch Video</a>
+        <iframe width="960" height="585" src="https://www.youtube.com/embed/${ecode}?si=D9qbz7MSZsT-2ds5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   `;
 
   
@@ -199,25 +195,45 @@ const addToCart = (btn, event) => {
   const foodPriceNum = Number(foodPrice);
 
 
-  const selectedItem = {
+  const isExist = cart.find(item => item.foodTitle === foodTitle);
+  if(isExist){
+    for(let i = 0; i < cart.length; i++){
+      if(cart[i].foodTitle == foodTitle){
+        cart[i].quantity++;
+        break;
+      }
+    }
+  }else{
+    const selectedItem = {
     id: cart.length + 1,
+    quantity: 0,
     foodTitle: foodTitle,
     foodImg: foodImg, 
     foodPrice: foodPriceNum
   };
   cart.push(selectedItem)
+  }
+
+  // const selectedItem = {
+  //   id: cart.length + 1,
+  //   quantity: 0,
+  //   foodTitle: foodTitle,
+  //   foodImg: foodImg, 
+  //   foodPrice: foodPriceNum
+  // };
+  // cart.push(selectedItem)
   total = total + foodPriceNum;
   displayCart(cart)
   displayTotal(total)
 };
 
 
-  const displayTotal = (val) => {
+  const displayTotal = ( val ) => {
     document.getElementById('cart-total').innerHTML = val
   }
 
 
-const displayCart = (cart) => {
+const displayCart = ( cart ) => {
   const cartContainer = document.getElementById('cart-container');
   cartContainer.innerHTML = "";
   for(let item of cart){
@@ -225,10 +241,10 @@ const displayCart = (cart) => {
     newItem.innerHTML = `
     <div class="p-1 bg-white flex gap-3 shadow rounded-xl relative">
             <div class="img">
-              <span class="hidden cart-id">${item.id}</span>
+              <span class="hidden cart-id">${ item.id }</span>
 
               <img
-                src="${item.foodImg}"
+                src="${ item.foodImg }"
                 alt=""
                 class="w-[50px] rounded-xl h-[50px] object-cover"
               />
