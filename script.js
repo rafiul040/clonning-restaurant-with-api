@@ -1,5 +1,6 @@
 const loadData = () => {
     const url = "https://taxi-kitchen-api.vercel.app/api/v1/categories";
+
     fetch(url)
     .then(res => res.json())
     .then(data => displayCategory( data.categories ))
@@ -52,9 +53,22 @@ const loadFoodDetails = ( id ) => {
 // }
 
 
-const displayCategory = ( categories ) => 
-  {
-    const catContainer = document.getElementById( "category-container" )
+// const displayCategory = ( categories ) => 
+//   {
+//     const catContainer = document.getElementById( "category-container" )
+
+//   .then(data => 
+//     {
+//     displayFoods(data.foods)
+//   })
+// }
+
+
+
+const displayCategory = (categories) => {
+    console.log(categories)
+    const catContainer = document.getElementById("category-container")
+
     catContainer.innerHTML = "";
     for(let cat of categories){
 
@@ -133,6 +147,10 @@ const displayFoods = ( foods ) => {
 
     foodContainer
     .append(foodCart)
+
+    // document.getElementById(`add-btn-${food.id}`).addEventListener('click', (e) => {
+
+    // })
   });
     document.getElementById('food-container').classList.remove('hidden')
   document.getElementById('loading-spinner')?.classList.add('hidden')
@@ -158,6 +176,7 @@ document.getElementById("my_modal_3").showModal()
 
 
 loadData()
+
 // loadRandomData()
 loadFoods()
 
@@ -181,6 +200,7 @@ const addToCart = (btn, event) => {
 
 
   const selectedItem = {
+    id: cart.length + 1,
     foodTitle: foodTitle,
     foodImg: foodImg, 
     foodPrice: foodPriceNum
@@ -205,6 +225,8 @@ const displayCart = (cart) => {
     newItem.innerHTML = `
     <div class="p-1 bg-white flex gap-3 shadow rounded-xl relative">
             <div class="img">
+              <span class="hidden cart-id">${item.id}</span>
+
               <img
                 src="${item.foodImg}"
                 alt=""
@@ -237,9 +259,10 @@ const displayCart = (cart) => {
 
 const removeCart = (btn) => {
   const item = btn.parentNode;
-  const foodTitle = item.querySelector('.food-title').innerText
+  // const foodTitle = item.querySelector('.food-title').innerText
+  const id = Number(item.querySelector('.cart-id').innerText);
   const foodPrice = Number(item.querySelector('.item-price').innerText)
-  cart = cart.filter(item => item.foodTitle != foodTitle);
+  cart = cart.filter(item => item.id != id);
 
   total = total - foodPrice
   // total = 0
@@ -247,3 +270,16 @@ const removeCart = (btn) => {
   displayCart(cart)
   displayTotal(total)
 }
+// loadRandomData()
+
+
+
+
+
+
+
+
+
+
+
+
